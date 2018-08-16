@@ -52,9 +52,9 @@ def main():
         print('Ensuring {} is mounted at {}'.format(share, mount_path))
 
         if is_mounted(mount_path):
-            print("{} is already mounted, skipping".format(fileserver))
+            print("{} is already mounted, skipping".format(share))
         else:
-            print("{} is not mounted, mounting".format(fileserver))
+            print("{} is not mounted, mounting".format(share))
             mount_fileserver(share, mount_path)
 
 if __name__ == '__main__':
