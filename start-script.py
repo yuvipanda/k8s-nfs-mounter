@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
 import subprocess
 import time
-import os
+import sys
 
-with open(os.environ['MOUNT_SCRIPT']) as f:
-    host_script = f.read()
-
-assert 'FILESERVERS' in os.environ
-assert 'MOUNT_PATH_TEMPLATE' in os.environ
 
 while True:
     try:
@@ -21,9 +16,7 @@ while True:
             'python3',
             '-c',
              host_script,
-             os.environ['FILESERVERS'],
-             os.environ['MOUNT_PATH_TEMPLATE']
-        ])
+        ] + sys.argv[1:])
     except subprocess.CalledProcessError:
         print("Host script failed")
     time.sleep(10)
