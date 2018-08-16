@@ -2,7 +2,11 @@
 import subprocess
 import time
 import sys
+import os
 
+HERE = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(HERE, 'mounter.py')) as f:
+    HOST_SCRIPT = f.read()
 
 while True:
     try:
@@ -15,7 +19,7 @@ while True:
             '--',
             'python3',
             '-c',
-             host_script,
+            HOST_SCRIPT
         ] + sys.argv[1:])
     except subprocess.CalledProcessError:
         print("Host script failed")
